@@ -36,9 +36,7 @@ const City = () => {
         <h6 className="uppercase text-[#d6dee0] text-[10px] mb-2">
           you went to {cityName} on
         </h6>
-        <time className="text-white text-sm md:text-base">
-          {formatDate(date)}
-        </time>
+        <time className="text-white text-sm md:text-base">{date}</time>
       </div>
       <div className="text-start">
         <h6 className="uppercase text-[#d6dee0] text-[10px] mb-2">
