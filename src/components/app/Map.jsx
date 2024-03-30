@@ -3,9 +3,9 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { useEffect, useState } from "react";
 import { useCities } from "../../contexts/CitiesContext";
 import ChangeMapCenter from "./ChangeMapCenter";
+import DetectClickOnMap from "./DetectClickOnMap";
 
 const Map = () => {
-  // const navigate = useNavigate();
   const { cities } = useCities();
   const [mapPosition, setMapPosition] = useState([40, 0]);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -48,6 +48,7 @@ const Map = () => {
           </Marker>
         ))}
         <ChangeMapCenter position={mapPosition} />
+        <DetectClickOnMap />
       </MapContainer>
     </div>
   );
