@@ -11,6 +11,7 @@ const formatDate = (date) =>
 const CityItem = ({ city }) => {
   const { position, cityName, emoji, date, id } = city;
   const { currentCity } = useCities();
+  console.log(position.lat, position.lng);
   return (
     <li>
       <Link
