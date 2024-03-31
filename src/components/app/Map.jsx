@@ -2,13 +2,20 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { useEffect, useState } from "react";
 import { useCities } from "../../contexts/CitiesContext";
-import ChangeMapCenter from "./ChangeMapCenter";
-import DetectClickOnMap from "./DetectClickOnMap";
+import ChangeMapCenter from "../../hooks/ChangeMapCenter";
+import DetectClickOnMap from "../../hooks/DetectClickOnMap";
+import UseGeolocation from "../../hooks/UseGeolocation";
 
 const Map = () => {
   const { cities } = useCities();
   const [mapPosition, setMapPosition] = useState([40, 0]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const {
+    isLoading: isLoadingPosition,
+    position: geolocationPosition,
+    getPosition,
+  } = UseGeolocation();
+
   const mapLat = searchParams.get("lat");
   const mapLng = searchParams.get("lng");
   useEffect(() => {
@@ -18,14 +25,20 @@ const Map = () => {
   return (
     <div
       // onClick={() => navigate("form")}
-      className=" h-[94dvh] w-full bg-[#2d3439]"
+      className=" h-[94dvh] w-full bg-[#2d3439] "
     >
+      <button
+        onClick={() => getPosition()}
+        className="uppercase bg-[#00c46a] py-1 px-2 rounded-md text-xs font-medium absolute right-28 bottom-20 z-50"
+      >
+        {isLoadingPosition ? "...Loading" : "use your position"}
+      </button>
       <MapContainer
         // center={mapPosition}
         center={mapPosition}
         zoom={6}
         scrollWheelZoom={true}
-        className="h-[94dvh] w-full"
+        className="h-[94dvh] w-full relative z-40 "
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
