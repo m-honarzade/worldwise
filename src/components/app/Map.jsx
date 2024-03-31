@@ -18,21 +18,29 @@ const Map = () => {
 
   const mapLat = searchParams.get("lat");
   const mapLng = searchParams.get("lng");
+
   useEffect(() => {
     if (mapLat && mapLng) setMapPosition([mapLat, mapLng]);
   }, [mapLat, mapLng]);
+
+  useEffect(() => {
+    if (geolocationPosition)
+      setMapPosition([geolocationPosition.lat, geolocationPosition.lng]);
+  }, [geolocationPosition]);
 
   return (
     <div
       // onClick={() => navigate("form")}
       className=" h-[94dvh] w-full bg-[#2d3439] "
     >
-      <button
-        onClick={() => getPosition()}
-        className="uppercase bg-[#00c46a] py-1 px-2 rounded-md text-xs font-medium absolute right-28 bottom-20 z-50"
-      >
-        {isLoadingPosition ? "...Loading" : "use your position"}
-      </button>
+      {!geolocationPosition && (
+        <button
+          onClick={getPosition}
+          className="uppercase bg-[#00c46a] py-1 px-2 rounded-md text-xs font-medium absolute right-28 bottom-20 z-50"
+        >
+          {isLoadingPosition ? "...Loading" : "use your position"}
+        </button>
+      )}
       <MapContainer
         // center={mapPosition}
         center={mapPosition}
