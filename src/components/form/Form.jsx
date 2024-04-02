@@ -6,6 +6,10 @@ import UseUrlPosition from "../../hooks/UseUrlPosition";
 import { useEffect, useState } from "react";
 import Message from "../Message";
 import Spinner from "../Spinner";
+import DatePicker from "react-datepicker";
+// import "./customDatePickerWidth.css";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 export function convertToEmoji(countryCode) {
@@ -23,6 +27,7 @@ const Form = () => {
   const [isLoadingGeocoding, setIsLoadingGeocoding] = useState(false);
   const [cityName, setCityName] = useState("");
   const [countryName, setCountryName] = useState("");
+  const [date, setDate] = useState(new Date());
   const [emoji, setEmoji] = useState("");
   const [geoCodingError, setGeoCodingError] = useState("");
 
@@ -51,25 +56,44 @@ const Form = () => {
     fetchCityData();
   }, [lat, lng]);
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+  };
+
   if (isLoadingGeocoding) return <Spinner />;
   if (!lat && !lng)
     return <Message>🖐Start by clicking somewhere on the map.</Message>;
 
   if (geoCodingError) return <Message>{geoCodingError}</Message>;
   return (
-    <form className="flex flex-col gap-4 p-6 bg-[#42484d] w-2/3 mt-4 rounded-md">
+    <form
+      onSubmit={submitHandler}
+      className="flex flex-col gap-4 p-6 bg-[#42484d] w-2/3 mt-4 rounded-md"
+    >
       <Input
         label={"City name"}
         id={"cityName"}
         value={cityName}
         emoji={emoji}
       />
-      <Input label={"When did you go to?"} id={"tripDate"} />
+      <div className="flex flex-col w-full gap-1 text-[#d6dee0] items-start">
+        <label htmlFor="datePicker" className="text-sm font-medium w-full">
+          When did you go to {cityName}
+        </label>
+        <div>
+          <DatePicker
+            onChange={(date) => setDate(date)}
+            selected={date}
+            dateFormat="dd/MM/yyyy"
+            id="datePicker"
+            className="rounded-md  py-1 px-2 bg-[#d6dee0]  text-[#333] text-sm font-semibold"
+          />
+        </div>
+      </div>
+      {/* <Input label={"When did you go to?"} id={"tripDate"} /> */}
       <TextErea label={"Notes about your trip to."} id={"TripNote"} />
       <div className="flex flex-row justify-between w-full">
-        <Button onClick={() => navigate(-1)} type={"submit"}>
-          Add
-        </Button>
+        <Button type={"submit"}>Add</Button>
         <Button
           type={"button"}
           onClick={(e) => {

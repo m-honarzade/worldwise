@@ -25,3 +25,12 @@
   text-align: left;
   /* border-radius: 12px; */
 }
+
+.myContainer .react-datepicker-manager,
+.myContainer .react-datepicker-wrapper,
+.myContainer .react-datepicker__input-container {
+  width: 100%;
+}
+.react-datepicker-wrapper {
+  width: 100%;
+}
