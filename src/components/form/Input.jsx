@@ -1,4 +1,4 @@
-const Input = ({ id, label }) => {
+const Input = ({ id, label, value = "", emoji = "" }) => {
   return (
     <div className="flex flex-col w-full gap-1 text-[#d6dee0] items-start ">
       <label htmlFor={id} className="text-sm font-medium">
@@ -7,7 +7,8 @@ const Input = ({ id, label }) => {
       <input
         type="text"
         id={id}
-        className="rounded-md p-1 bg-[#d6dee0] w-full"
+        value={`${value}        ${emoji}`}
+        className="rounded-md py-1 px-2 bg-[#d6dee0] w-full text-[#333] text-sm font-semibold"
       />
     </div>
   );

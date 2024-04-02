@@ -5,19 +5,18 @@ import { useCities } from "../../contexts/CitiesContext";
 import ChangeMapCenter from "../../hooks/ChangeMapCenter";
 import DetectClickOnMap from "../../hooks/DetectClickOnMap";
 import UseGeolocation from "../../hooks/UseGeolocation";
+import UseUrlPosition from "../../hooks/UseUrlPosition";
 
 const Map = () => {
   const { cities } = useCities();
   const [mapPosition, setMapPosition] = useState([40, 0]);
-  const [searchParams, setSearchParams] = useSearchParams();
   const {
     isLoading: isLoadingPosition,
     position: geolocationPosition,
     getPosition,
   } = UseGeolocation();
 
-  const mapLat = searchParams.get("lat");
-  const mapLng = searchParams.get("lng");
+  const [mapLat, mapLng] = UseUrlPosition();
 
   useEffect(() => {
     if (mapLat && mapLng) setMapPosition([mapLat, mapLng]);
