@@ -10,8 +10,14 @@ const formatDate = (date) =>
 
 const CityItem = ({ city }) => {
   const { position, cityName, emoji, date, id } = city;
-  const { currentCity } = useCities();
+  const { currentCity, deleteCity } = useCities();
   console.log(position.lat, position.lng);
+
+  const deleteCityHandler = (e) => {
+    e.preventDefault();
+    deleteCity(id);
+  };
+
   return (
     <li>
       <Link
@@ -26,7 +32,10 @@ const CityItem = ({ city }) => {
         </div>
         <div className="text-white flex flex-row gap-4 ">
           <time className="text-xs flex flex-row">({formatDate(date)})</time>
-          <button className="bg-[#2d3439] rounded-full py-[2px] px-[6px] text-xs">
+          <button
+            onClick={deleteCityHandler}
+            className="bg-[#2d3439] rounded-full py-[2px] px-[6px] text-xs"
+          >
             &times;
           </button>
         </div>
