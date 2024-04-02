@@ -30,7 +30,7 @@ const Map = () => {
   return (
     <div
       // onClick={() => navigate("form")}
-      className=" h-[94dvh] w-full bg-[#2d3439] "
+      className=" min-h-screen w-full bg-[#2d3439] "
     >
       {!geolocationPosition && (
         <button
@@ -45,7 +45,7 @@ const Map = () => {
         center={mapPosition}
         zoom={6}
         scrollWheelZoom={true}
-        className="h-[94dvh] w-full relative z-40 "
+        className="min-h-screen w-full relative z-40 "
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

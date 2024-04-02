@@ -22,7 +22,7 @@ const CityItem = ({ city }) => {
       >
         <div className="text-white flex flex-row gap-3 w-5">
           <img src={emoji} alt="" />
-          <p className="text-sm">{cityName}</p>
+          <p className="text-sm text-nowrap">{cityName}</p>
         </div>
         <div className="text-white flex flex-row gap-4 ">
           <time className="text-xs flex flex-row">({formatDate(date)})</time>
