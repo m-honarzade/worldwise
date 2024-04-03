@@ -25,7 +25,7 @@ const PageNav = () => {
         <li>
           <NavLink
             to="/login"
-            className="bg-[#00c46a] px-3 py-2 rounded-md text-[#242a2e] text-xs font-semibold"
+            className="bg-[#00c46a] px-3 py-2 rounded-md text-[#242a2e] text-xs font-semibold  visited:bg-[#00c46a] visited:text-[#242a2e]"
           >
             Login
           </NavLink>
