@@ -33,7 +33,7 @@ const Homepage = () => {
           </h2>
         </section>
         <Link
-          to="/app"
+          to="/login"
           className="mt-10 text-[#242a2e] uppercase px-3 md:px-5 py-2 bg-[#00c46a] rounded-md text-xs font-bold"
         >
           Start tracking now
