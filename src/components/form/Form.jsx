@@ -92,6 +92,7 @@ const Form = () => {
         label={"City name"}
         id={"cityName"}
         value={cityName}
+        // onChange={(e) => setCityName(e.target.value)}
         emoji={emoji}
       />
       <div className="flex flex-col w-full gap-1 text-[#d6dee0] items-start">
